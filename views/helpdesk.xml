@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record id="view_res_partner_ticket_filter" model="ir.ui.view">
+            <field name="name">res.partner.ticket.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page name="tickets" string="Tickets">
+                        <field name="helpdesk_ticket_ids" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="team_id"/>
+                                <field name="stage_id"/>
+                                <field name="user_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_res_partner_ticket_count" model="ir.ui.view">
+            <field name="name">res.partner.ticket.count</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="helpdesk_ticket_count" string="Tickets"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_res_partner_ticket_ribbon" model="ir.ui.view">
+            <field name="name">res.partner.ticket.ribbon</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <widget name="web_ribbon" text="No Tickets" bg_color="bg-danger" attrs="{'invisible': [('helpdesk_ticket_count', '!=', 0)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_res_partner_ticket_ratio" model="ir.ui.view">
+            <field name="name">res.partner.ticket.ratio</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="Tickets" icon="fa-ticket">
+                        <field name="ticket_ratio" widget="statinfo" string="% Used Tickets"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
