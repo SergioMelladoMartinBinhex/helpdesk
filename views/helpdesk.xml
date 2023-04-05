@@ -26,7 +26,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='category_id']" position="after">
-                    <field name="helpdesk_ticket_count" string="Tickets"/>
+                    <field name="helpdesk_ticket_active_count" string="Tickets disponibles"/>
                 </xpath>
             </field>
         </record>
@@ -42,16 +42,22 @@
             </field>
         </record>
 
-        <record id="view_res_partner_ticket_ratio" model="ir.ui.view">
-            <field name="name">res.partner.ticket.ratio</field>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">view_partner_form</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']" position="inside">
-                    <button name="Tickets" icon="fa-ticket">
-                        <field name="ticket_ratio" widget="statinfo" string="% Used Tickets"/>
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        context="{'search_default_open': True, 'default_partner_id': active_id, 'search_default_contract_type': 'annual'}"
+                        name="action_view_helpdesk_tickets"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-ticket"
+                        string="Tickets"
+                    >
                     </button>
-                </xpath>
+                </div>
             </field>
         </record>
 
