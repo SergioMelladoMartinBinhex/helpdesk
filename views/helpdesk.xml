@@ -19,7 +19,6 @@
                 </xpath>
             </field>
         </record>
-
         <record id="view_res_partner_ticket_count" model="ir.ui.view">
             <field name="name">res.partner.ticket.count</field>
             <field name="model">res.partner</field>
@@ -30,7 +29,6 @@
                 </xpath>
             </field>
         </record>
-
         <record id="view_res_partner_ticket_ribbon" model="ir.ui.view">
             <field name="name">res.partner.ticket.ribbon</field>
             <field name="model">res.partner</field>
@@ -41,7 +39,6 @@
                 </xpath>
             </field>
         </record>
-
         <record id="view_partner_form" model="ir.ui.view">
             <field name="name">view_partner_form</field>
             <field name="model">res.partner</field>
@@ -55,11 +52,10 @@
                         class="oe_stat_button"
                         icon="fa-ticket"
                         string="Tickets"
-                    >
+                        >
                     </button>
                 </div>
             </field>
         </record>
-
     </data>
 </odoo>
