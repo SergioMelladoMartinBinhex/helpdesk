@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_helpdesk_my_helpdesk_my,helpdesk_my.helpdesk_my,model_helpdesk_my_helpdesk_my,base.group_user,1,1,1,1
