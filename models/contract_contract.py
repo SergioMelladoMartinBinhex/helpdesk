@@ -13,8 +13,7 @@ class ContractContract(models.Model):
             if line[2]['name'] == "Ticket":
                 tickets = line[2]['quantity']
 
-        partner_id = vals.get('partner_id')
-        partner = self.env['res.partner'].search([('id', '=', partner_id)])
+        partner = self.env['res.partner'].search([('id', '=', vals.get('partner_id'))])
         partner.active_tickets = tickets 
 
         return super().create(vals)
