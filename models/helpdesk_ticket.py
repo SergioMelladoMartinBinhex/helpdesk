@@ -1,5 +1,6 @@
 import logging
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
                         
@@ -28,13 +29,13 @@ class HelpdeskTicket(models.Model):
     def write(self, vals):
         ticket = self.env['helpdesk.ticket'].search([('id', '=', self.id)])
         partner = self.env['res.partner'].search([('id', '=', ticket.partner_id.id)])
-        logger.info("DEBBUG Partner: %s", partner.name)
+        
         if not partner.has_available_tickets and self.stage_id.id == 3:
             vals['stage_id'] = 3 # En espera
-            #show a pop up to user saying that he has no available tickets
-                
-            
+            raise UserError('No tienes tickets disponibles')
+        
         elif partner.has_available_tickets and self.stage_id.id == 3:
             partner.active_tickets -= 1
-            
+        
         return super().write(vals)
+
