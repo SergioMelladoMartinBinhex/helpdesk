@@ -20,12 +20,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'helpdesk_mgmt'],
+    'depends': ['base', 'helpdesk_mgmt', 'contract'],
 
     # always loaded
     'data': [
         'views/res_partner.xml',
-        'views/product_product.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

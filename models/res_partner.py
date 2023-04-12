@@ -1,20 +1,17 @@
 import logging
 from odoo import api, fields, models
 
-_logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    active_tickets = fields.Integer()
     has_available_tickets = fields.Boolean(compute='_compute_has_available_tickets')
-
-    @api.depends('helpdesk_ticket_ids')
+    
     def _compute_has_available_tickets(self):
         for record in self:
-            for ticket in record.helpdesk_ticket_ids:
-                if ticket.active:
-                    self.has_available_tickets = True
-                    break
-                else:
-                    continue
-            self.has_available_tickets = False
+            if self.active_tickets > 0:
+                self.has_available_tickets = True
+            else:
+                self.has_available_tickets = False
