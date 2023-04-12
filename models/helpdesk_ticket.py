@@ -32,7 +32,7 @@ class HelpdeskTicket(models.Model):
         
         if not partner.has_available_tickets and self.stage_id.id == 3:
             vals['stage_id'] = 3 # En espera
-            raise UserError('No tienes tickets disponibles')
+            raise UserError('El usuario no tiene tickets disponibles')
         
         elif partner.has_available_tickets and self.stage_id.id == 3:
             partner.active_tickets -= 1
